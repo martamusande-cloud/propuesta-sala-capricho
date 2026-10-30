@@ -1,0 +1,892 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Sala Capricho · Propuesta de diseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Manrope:wght@300;400;500;600;700&family=Poiret+One&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fbf7f1; --bg2:#f4ece2; --card:#ffffff; --line:#e8ddd0;
+  --ink:#25171f; --mute:#6f6064; --dim:#9b8d8f;
+  --gold:#e8c25c; --gold2:#f3d98f; --goldtxt:#a8761a; --rose:#c94f7c; --plum:#3a1730;
+  --light:#f7f0e7; --lmute:rgba(247,240,231,.78);
+  --serif:"Bodoni Moda", Georgia, serif; --sans:"Manrope", system-ui, sans-serif; --deco:"Poiret One", var(--sans);
+  --r:18px; --max:1200px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+.eyebrow{font-family:var(--deco);letter-spacing:.28em;text-transform:uppercase;font-size:13px;color:var(--goldtxt);font-weight:700}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.05;letter-spacing:-.01em}
+h1{font-size:clamp(40px,min(6.4vw,10vh),92px)}
+h2{font-size:clamp(34px,4.8vw,64px)}
+h3{font-size:clamp(22px,2.2vw,28px)}
+h1 em,h2 em{font-style:italic;color:var(--goldtxt)}
+.lead{font-size:clamp(17px,1.5vw,20px);color:var(--mute);max-width:620px}
+section{padding:clamp(72px,10vw,140px) 0}
+.tbd{border:1px dashed var(--rose);color:var(--rose);border-radius:6px;padding:0 6px;font-size:.9em;white-space:nowrap}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:999px;font-weight:600;font-size:15px;cursor:pointer;border:1px solid transparent;transition:.25s}
+.btn-gold{background:var(--gold);color:#1a1307}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-1px)}
+.btn-ghost{border-color:rgba(37,23,31,.25)}
+.btn-ghost:hover{border-color:var(--ink);background:rgba(37,23,31,.04)}
+.dark{color:var(--light)}
+.dark .lead,.dark p{color:var(--lmute)}
+.dark .eyebrow,.dark h1 em,.dark h2 em{color:var(--gold)}
+.dark .btn-ghost{border-color:rgba(247,240,231,.45);color:var(--light)}
+.dark .btn-ghost:hover{border-color:var(--light);background:rgba(255,255,255,.08)}
+.arrow{transition:transform .25s}.btn:hover .arrow{transform:translateX(4px)}
+
+/* header */
+header{position:fixed;inset:0 0 auto;z-index:50;transition:.3s}
+header{color:var(--light)}
+header.solid{color:var(--ink);background:rgba(251,247,241,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:78px}
+.logo{display:flex;flex-direction:column;line-height:1}
+.logo b{font-family:var(--deco);font-weight:400;font-size:30px;letter-spacing:.14em}
+.logo small{font-family:var(--deco);font-size:10px;letter-spacing:.42em;color:var(--goldtxt);font-weight:700;margin-top:3px;padding-left:2px}
+.menu{display:flex;gap:34px;align-items:center}
+.menu a{font-size:14px;letter-spacing:.06em;color:inherit;opacity:.75;position:relative;padding:6px 0}
+.menu a:hover,.menu a.on{opacity:1}
+header:not(.solid) .logo small{color:var(--gold)}
+.menu a.on::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--gold)}
+.menu .btn{padding:11px 20px;color:#1a1307;opacity:1}
+.burger{display:none;background:none;border:0;width:44px;height:44px;cursor:pointer}
+.burger span{display:block;width:24px;height:1.5px;background:currentColor;margin:6px auto;transition:.3s}
+
+/* pages */
+.page{display:none}.page.on{display:block;animation:fade .5s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* hero */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding:140px 0 9vh;overflow:hidden}
+.hero .bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.06);animation:kb 18s ease-out forwards;filter:saturate(1.1) contrast(1.05)}
+@keyframes kb{to{transform:scale(1)}}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(25,14,20,.55) 0%,rgba(25,14,20,.12) 35%,rgba(25,14,20,.88) 100%),radial-gradient(80% 60% at 80% 20%,rgba(226,112,154,.25),transparent 60%)}
+.hero .wrap{position:relative;z-index:2;width:100%}
+.hero h1{max-width:980px;margin:18px 0 22px}
+.hero .ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
+.facts{display:flex;gap:40px;flex-wrap:wrap;margin-top:clamp(28px,5vh,56px);padding-top:clamp(18px,3vh,28px);border-top:1px solid rgba(244,237,227,.15)}
+.facts div{font-size:13px;color:var(--lmute)}
+.facts b{display:block;font-family:var(--serif);font-size:30px;font-weight:500;color:var(--light)}
+
+/* marquee */
+.marquee{border-block:1px solid var(--line);padding:22px 0;overflow:hidden;white-space:nowrap}
+.marquee div{display:inline-block;animation:mq 40s linear infinite;font-family:var(--serif);font-style:italic;font-size:28px;color:var(--mute)}
+.marquee span{margin:0 28px}.marquee i{color:var(--goldtxt);font-style:normal}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* section head */
+.shead{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:56px;flex-wrap:wrap}
+.shead h2{margin-top:14px;max-width:720px}
+
+/* rooms */
+.rooms{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.room{position:relative;border-radius:var(--r);overflow:hidden;min-height:620px;display:flex;align-items:flex-end;isolation:isolate}
+.room img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.room:hover img{transform:scale(1.05)}
+.room::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,transparent 30%,rgba(25,14,20,.92))}
+.room .in{padding:36px}
+.room .num{font-family:var(--deco);font-size:14px;letter-spacing:.3em;color:var(--gold)}
+.room h3{font-size:clamp(32px,3.4vw,46px);margin:10px 0 12px}
+.room p{max-width:440px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+.chip{font-size:12.5px;padding:7px 13px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
+.together{margin-top:28px;padding:26px 32px;border-radius:var(--r);border:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;background:linear-gradient(90deg,#f6dfe8,var(--card))}
+.together p{font-family:var(--serif);font-size:24px}
+
+/* tour */
+.tour{background:var(--bg2)}
+.track{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:max(24px,calc((100vw - var(--max))/2 + 24px));padding:0 max(24px,calc((100vw - var(--max))/2 + 24px)) 24px;scrollbar-width:none}
+.track::-webkit-scrollbar{display:none}
+.stop{flex:0 0 min(78vw,520px);scroll-snap-align:start}
+.stop .ph{aspect-ratio:4/5;border-radius:var(--r);overflow:hidden;position:relative}
+.stop .ph img{width:100%;height:100%;object-fit:cover;transition:transform 1s}
+.stop:hover .ph img{transform:scale(1.04)}
+.stop .n{position:absolute;top:18px;left:18px;font-family:var(--serif);font-style:italic;font-size:54px;line-height:1;color:#fff;text-shadow:0 2px 20px rgba(0,0,0,.5)}
+.stop h3{margin:20px 0 6px}
+.stop p{color:var(--mute);font-size:15px;max-width:420px}
+.tnav{display:flex;gap:10px}
+.tnav button{width:52px;height:52px;border-radius:50%;border:1px solid var(--line);background:var(--card);cursor:pointer;font-size:20px;transition:.2s}
+.tnav button:hover{border-color:var(--goldtxt);color:var(--goldtxt)}
+.v360{margin-top:70px;display:grid;grid-template-columns:1fr 1.4fr;gap:40px;align-items:center}
+.v360 .frame{border-radius:var(--r);overflow:hidden;aspect-ratio:16/10;border:1px solid var(--line);background:#000}
+.v360 iframe{width:100%;height:100%;border:0}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;counter-reset:s}
+.step{padding:34px;border:1px solid var(--line);border-radius:var(--r);position:relative;background:var(--card)}
+.step::before{counter-increment:s;content:"0" counter(s);font-family:var(--serif);font-style:italic;font-size:46px;color:var(--goldtxt);display:block;margin-bottom:18px}
+.step p{color:var(--mute);margin-top:8px}
+
+/* teaser */
+.teaser{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center}
+.teaser .mosaic{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.teaser .mosaic img{border-radius:14px;aspect-ratio:1;object-fit:cover;width:100%}
+.teaser .mosaic img:nth-child(1){grid-row:span 2;aspect-ratio:auto;height:100%}
+.pricelist{margin:30px 0 36px;border-top:1px solid var(--line)}
+.pricelist div{display:flex;justify-content:space-between;padding:16px 0;border-bottom:1px solid var(--line)}
+.pricelist b{font-family:var(--serif);font-weight:500;font-size:20px;color:var(--goldtxt)}
+
+/* cta band */
+.band{position:relative;border-radius:28px;overflow:hidden;padding:clamp(48px,8vw,100px);text-align:center;isolation:isolate}
+.band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.band::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(135deg,rgba(58,23,48,.92),rgba(13,10,12,.8))}
+.band h2{max-width:800px;margin:16px auto 30px}
+.band .ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+/* page hero (inner) */
+.phero{padding:170px 0 70px;position:relative;overflow:hidden}
+.phero::before{content:"";position:absolute;width:760px;height:760px;right:-200px;top:-320px;background:radial-gradient(circle,rgba(232,194,92,.28),rgba(226,112,154,.12) 45%,transparent 68%)}
+.phero h1{font-size:clamp(46px,7vw,92px);margin:16px 0 22px;position:relative}
+.subnav{position:sticky;top:78px;z-index:30;background:rgba(251,247,241,.92);backdrop-filter:blur(12px);border-block:1px solid var(--line)}
+.subnav .wrap{display:flex;gap:6px;overflow-x:auto;padding-block:12px;scrollbar-width:none}
+.subnav a{white-space:nowrap;padding:8px 16px;border-radius:999px;font-size:14px;color:var(--mute);border:1px solid transparent}
+.subnav a:hover{color:var(--ink);border-color:var(--line);background:var(--card)}
+
+/* event types */
+.types{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.type{border-radius:var(--r);overflow:hidden;background:var(--card);border:1px solid var(--line)}
+.type img{aspect-ratio:3/2;object-fit:cover;width:100%}
+.type .in{padding:26px}
+.type p{color:var(--mute);font-size:15px;margin:8px 0 0}
+
+/* menus */
+.menus{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.mcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+.mcard.feat{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold),0 30px 80px -30px rgba(168,118,26,.4)}
+.mcard .top{position:relative}
+.mcard .top img{aspect-ratio:16/10;object-fit:cover;width:100%}
+.badge{position:absolute;top:14px;left:14px;background:var(--gold);color:#1a1307;font-size:12px;font-weight:700;padding:6px 12px;border-radius:999px;letter-spacing:.04em}
+.mcard .in{padding:28px;display:flex;flex-direction:column;flex:1}
+.price{font-family:var(--serif);font-size:44px;line-height:1;margin:14px 0 4px}
+.price small{font-family:var(--sans);font-size:14px;color:var(--mute);font-weight:400}
+.mcard .cond{font-size:13px;color:var(--dim)}
+.mcard ul{list-style:none;margin:20px 0 26px;columns:1;flex:1}
+.mcard li{padding:7px 0 7px 22px;border-bottom:1px solid var(--line);font-size:14.5px;color:#4a3a41;position:relative}
+.mcard li::before{content:"◆";position:absolute;left:0;color:var(--goldtxt);font-size:9px;top:12px}
+.mcard li.inc{color:var(--goldtxt);font-weight:600}
+.mcard .btn{justify-content:center}
+
+/* drinks */
+.drinks{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.dcard{padding:32px;border-radius:var(--r);border:1px solid var(--line);background:linear-gradient(160deg,var(--card),var(--bg2))}
+.dcard .price{font-size:40px}
+.dcard p{color:var(--mute);font-size:15px;margin-top:10px}
+
+/* trays */
+.trays{display:grid;grid-template-columns:1fr 1fr;gap:0 48px;border-top:1px solid var(--line)}
+.tray{display:flex;justify-content:space-between;gap:20px;padding:20px 0;border-bottom:1px solid var(--line)}
+.tray h4{font-weight:600;font-size:16px}
+.tray p{font-size:14px;color:var(--mute)}
+.tray b{font-family:var(--serif);font-weight:500;font-size:20px;color:var(--goldtxt);white-space:nowrap}
+
+/* extras */
+.extras{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.xcard{display:flex;gap:18px;align-items:center;padding:16px;border-radius:var(--r);border:1px solid var(--line);background:var(--card)}
+.xcard img{width:92px;height:92px;border-radius:12px;object-fit:cover;flex:none}
+.xcard h4{font-size:16px;font-weight:600;line-height:1.3}
+.xcard b{font-family:var(--serif);font-weight:500;color:var(--goldtxt);font-size:20px}
+
+/* calculator */
+.calc{display:grid;grid-template-columns:1.3fr 1fr;gap:28px;padding:40px;border-radius:24px;border:1px solid var(--line);background:var(--card)}
+.field{margin-bottom:22px}
+.field label,.flabel{display:block;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:10px}
+.range{display:flex;align-items:center;gap:16px}
+.range input{flex:1;accent-color:var(--goldtxt)}
+.range output{font-family:var(--serif);font-size:30px;min-width:60px;text-align:right}
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.seg label{margin:0;text-transform:none;letter-spacing:0;font-size:14px;color:var(--ink);cursor:pointer}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg span{display:block;padding:10px 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);transition:.2s}
+.seg input:checked+span{background:var(--gold);color:#1a1307;border-color:var(--gold);font-weight:600}
+.seg input:focus-visible+span{outline:2px solid var(--gold2);outline-offset:2px}
+.total{border-radius:18px;padding:32px;background:linear-gradient(160deg,var(--plum),#5a2547);color:var(--light);display:flex;flex-direction:column}
+.total .eyebrow{color:var(--gold)}
+.total .big{font-family:var(--serif);font-size:clamp(52px,6vw,76px);line-height:1;margin:12px 0}
+.total .pp{color:var(--lmute)}
+.total ul{list-style:none;margin:22px 0;font-size:14px;color:var(--lmute);flex:1}
+.total li{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.07)}
+.total small{font-size:12px;color:var(--lmute);margin-top:14px}
+
+/* gallery */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:34px}
+.filters button{padding:10px 18px;border-radius:999px;border:1px solid var(--line);background:var(--card);cursor:pointer;font-size:14px}
+.filters button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.masonry{columns:3 300px;column-gap:16px}
+.masonry figure{break-inside:avoid;margin-bottom:16px;border-radius:14px;overflow:hidden;cursor:zoom-in;position:relative}
+.masonry img{width:100%;transition:transform .8s}
+.masonry figure:hover img{transform:scale(1.04)}
+.masonry figcaption{position:absolute;left:12px;bottom:12px;font-size:12px;padding:5px 11px;border-radius:999px;color:#fff;background:rgba(25,14,20,.65);backdrop-filter:blur(6px);opacity:0;transition:.3s}
+.masonry figure:hover figcaption{opacity:1}
+.lb{position:fixed;inset:0;z-index:100;background:rgba(5,4,5,.94);display:none;align-items:center;justify-content:center;padding:24px}
+.lb.on{display:flex}
+.lb img{max-height:88vh;max-width:92vw;border-radius:10px}
+.lb button{position:absolute;background:none;border:0;color:#fff;font-size:34px;cursor:pointer;width:56px;height:56px}
+.lb .x{top:16px;right:16px}.lb .pv{left:12px}.lb .nx{right:12px}
+
+/* contact */
+.cgrid{display:grid;grid-template-columns:1.5fr 1fr;gap:40px;align-items:start}
+.form{padding:40px;border-radius:24px;background:var(--card);border:1px solid var(--line);box-shadow:0 30px 80px -50px rgba(58,23,48,.35)}
+.fstep{padding-bottom:30px;margin-bottom:30px;border-bottom:1px solid var(--line)}
+.fstep:last-of-type{border:0}
+.fstep h3{display:flex;gap:14px;align-items:baseline;margin-bottom:22px;font-size:26px}
+.fstep h3 i{font-family:var(--deco);font-style:normal;font-size:14px;color:var(--goldtxt);font-weight:700;letter-spacing:.2em}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.row3{grid-template-columns:1fr 1fr 1fr}
+.inp{width:100%;padding:14px 16px;border-radius:12px;border:1px solid var(--line);background:var(--bg);transition:.2s}
+.inp:focus{outline:none;border-color:var(--goldtxt);box-shadow:0 0 0 3px rgba(232,194,92,.15)}
+textarea.inp{min-height:120px;resize:vertical}
+select.inp{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--mute) 50%),linear-gradient(135deg,var(--mute) 50%,transparent 50%);background-position:calc(100% - 20px) 50%,calc(100% - 15px) 50%;background-size:5px 5px;background-repeat:no-repeat}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ck{display:flex;gap:12px;align-items:center;padding:14px 16px;border:1px solid var(--line);border-radius:12px;cursor:pointer;font-size:14.5px;transition:.2s}
+.ck:hover{border-color:#cdbfae}
+.ck input{accent-color:var(--goldtxt);width:18px;height:18px}
+.ck em{margin-left:auto;font-style:normal;color:var(--goldtxt);font-size:13px;white-space:nowrap}
+.legal{display:flex;gap:12px;font-size:13px;color:var(--mute);margin:8px 0 24px}
+.legal input{accent-color:var(--goldtxt);margin-top:4px}
+.legal a{text-decoration:underline}
+.sent{display:none;text-align:center;padding:60px 20px}
+.sent.on{display:block}
+.side{position:sticky;top:110px;display:flex;flex-direction:column;gap:18px}
+.info{padding:28px;border-radius:var(--r);border:1px solid var(--line);background:var(--card)}
+.info a{display:flex;gap:14px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.info a:last-child{border:0}
+.info .ic{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--bg2);color:var(--goldtxt);flex:none}
+.info small{display:block;color:var(--mute);font-size:12px}
+.map{border-radius:var(--r);overflow:hidden;aspect-ratio:4/3;border:1px solid var(--line)}
+.map iframe{width:100%;height:100%;border:0}
+.faq details{border-bottom:1px solid var(--line);padding:18px 0}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;font-weight:600}
+.faq summary::after{content:"+";color:var(--goldtxt);font-size:22px;line-height:1}
+.faq details[open] summary::after{content:"–"}
+.faq p{color:var(--mute);margin-top:10px;font-size:15px}
+
+/* footer */
+footer{background:var(--plum);color:var(--light);padding:70px 0 40px;margin-top:40px}
+footer p,footer h4{color:var(--lmute)!important}
+footer .logo small{color:var(--gold)}
+.fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
+footer h4{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-bottom:16px;font-weight:600}
+footer li{list-style:none;padding:5px 0;font-size:15px}
+footer li a:hover{color:var(--gold)}
+footer .tbd{color:#f3a6c3;border-color:#f3a6c3}
+.fbottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:60px;padding-top:26px;border-top:1px solid rgba(247,240,231,.15);font-size:13px;color:var(--lmute)}
+
+/* whatsapp */
+.wa{position:fixed;right:22px;bottom:22px;z-index:60;width:60px;height:60px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:.25s}
+.wa:hover{transform:scale(1.07)}
+
+/* proposal note */
+.note{position:fixed;left:22px;bottom:22px;z-index:60;max-width:300px;font-size:12.5px;padding:12px 14px;border-radius:12px;background:var(--card);box-shadow:0 10px 30px rgba(0,0,0,.15);border:1px solid var(--line);color:var(--mute)}
+.note b{color:var(--ink)}
+.note button{position:absolute;top:4px;right:6px;background:none;border:0;cursor:pointer;color:var(--mute);font-size:16px}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+
+@media (max-width:960px){
+  .menu{position:fixed;inset:78px 0 auto;flex-direction:column;align-items:flex-start;gap:0;background:var(--bg);color:var(--ink);padding:10px 24px 28px;border-bottom:1px solid var(--line);transform:translateY(-130%);transition:.35s;z-index:-1}
+  .menu.open{transform:none}
+  .menu a{font-size:22px;font-family:var(--serif);padding:14px 0;width:100%;border-bottom:1px solid var(--line);color:var(--ink)}
+  .menu a.on::after{display:none}
+  .menu .btn{margin-top:20px;font-family:var(--sans);font-size:16px;width:auto;border:0}
+  .burger{display:block}
+  .rooms,.teaser,.v360,.calc,.cgrid{grid-template-columns:1fr}
+  .room{min-height:480px}
+  .steps,.types,.menus,.drinks,.extras{grid-template-columns:1fr}
+  .trays{grid-template-columns:1fr}
+  .fgrid{grid-template-columns:1fr 1fr}
+  .side{position:static}
+  .note{display:none}
+}
+@media (max-width:600px){
+  .wrap{padding:0 16px}
+  .facts{gap:22px}.facts b{font-size:24px}
+  .row,.row3,.checks{grid-template-columns:1fr}
+  .form,.calc{padding:22px}
+  .room .in{padding:24px}
+  .together{padding:22px}
+  .fgrid{grid-template-columns:1fr}
+  .marquee div{font-size:22px}
+}
+</style>
+</head>
+<body>
+
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="#inicio" class="logo" aria-label="Sala Capricho, inicio"><b>CAPRICHO</b><small>GIN'S &amp; NIGHT CLUB</small></a>
+    <nav class="menu" id="menu">
+      <a href="#inicio" data-p="inicio">Inicio</a>
+      <a href="#celebraciones" data-p="celebraciones">Celebraciones</a>
+      <a href="#galeria" data-p="galeria">Galería</a>
+      <a href="#contacto" data-p="contacto">Contacto</a>
+      <a href="#contacto" class="btn btn-gold">Pide presupuesto</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Abrir menú"><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+<!-- ===================== INICIO ===================== -->
+<div class="page" id="p-inicio">
+  <section class="hero dark">
+    <div class="bg" style="background-image:url(https://salacapricho.com/wp-content/uploads/2016/04/IMG_8403.jpg)"></div>
+    <div class="wrap">
+      <p class="eyebrow">Príncipe de Vergara 225 · Madrid</p>
+      <h1>Celebra tu evento privado en <em>Sala Capricho</em></h1>
+      <p class="lead">Dos salas independientes para cumpleaños, graduaciones y fiestas de empresa. Comida, barra libre y música en un solo sitio, y un equipo que se encarga de todo.</p>
+      <div class="ctas">
+        <a href="#contacto" class="btn btn-gold">Pide presupuesto <span class="arrow">→</span></a>
+        <a href="#salas" class="btn btn-ghost" data-scroll>Ver las salas</a>
+      </div>
+      <div class="facts">
+        <div><b>2</b>salas independientes</div>
+        <div><b>27 €</b>menús desde, por persona + IVA</div>
+        <div><b>18 €</b>barra libre desde + IVA</div>
+        <div><b>80</b>invitados por sala</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true"><div>
+    <span>Cumpleaños</span><i>◆</i><span>Graduaciones</span><i>◆</i><span>Fiestas de empresa</span><i>◆</i><span>Despedidas</span><i>◆</i><span>Conciertos privados</span><i>◆</i><span>Cenas cóctel</span><i>◆</i>
+    <span>Cumpleaños</span><i>◆</i><span>Graduaciones</span><i>◆</i><span>Fiestas de empresa</span><i>◆</i><span>Despedidas</span><i>◆</i><span>Conciertos privados</span><i>◆</i><span>Cenas cóctel</span><i>◆</i>
+  </div></div>
+
+  <section id="salas">
+    <div class="wrap">
+      <div class="shead reveal">
+        <div><p class="eyebrow">Dos espacios, una noche</p><h2>Dos salas <em>independientes</em>, solo para vosotros</h2></div>
+        <p class="lead">Cada sala tiene su propia barra y su propio sonido. Reservad una, o las dos para eventos grandes.</p>
+      </div>
+      <div class="rooms">
+        <article class="room dark reveal">
+          <img src="https://salacapricho.com/wp-content/uploads/2016/04/IMG_8404.jpg" alt="Sala principal con luces rosas, pista y sofás de capitoné" loading="lazy">
+          <div class="in">
+            <span class="num">SALA 01</span>
+            <h3>La Pista</h3>
+            <p>Sofás de capitoné, luz rosa y una pista amplia para que nadie se quede sentado. Ideal para cumpleaños y graduaciones.</p>
+            <div class="chips"><span class="chip">Barra propia</span><span class="chip">Pista de baile</span><span class="chip">Equipo de sonido y DJ</span><span class="chip">Hasta 80 personas</span></div>
+          </div>
+        </article>
+        <article class="room dark reveal">
+          <img src="https://salacapricho.com/wp-content/uploads/2016/04/IMG_8400.jpg" alt="Sala lounge en tonos cálidos con banquetas y espejos" loading="lazy">
+          <div class="in">
+            <span class="num">SALA 02</span>
+            <h3>El Lounge</h3>
+            <p>Tonos cálidos, espejos y banquetas corridas. Perfecta para cenas cóctel, afterworks y celebraciones más tranquilas.</p>
+            <div class="chips"><span class="chip">Barra propia</span><span class="chip">Zona de sofás</span><span class="chip">Ideal para cóctel</span><span class="chip">Hasta 80 personas</span></div>
+          </div>
+        </article>
+      </div>
+      <div class="together reveal">
+        <p>¿Sois muchos? Unimos las dos salas para eventos de hasta 160 personas.</p>
+        <a href="#contacto" class="btn btn-ghost">Consultar disponibilidad <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="tour" id="recorrido">
+    <div class="wrap">
+      <div class="shead reveal">
+        <div><p class="eyebrow">Recorrido visual</p><h2>Entra y <em>date una vuelta</em></h2></div>
+        <div class="tnav"><button id="tprev" aria-label="Anterior">←</button><button id="tnext" aria-label="Siguiente">→</button></div>
+      </div>
+    </div>
+    <div class="track" id="track">
+      <div class="stop"><div class="ph"><img src="https://salacapricho.com/wp-content/uploads/2016/04/IMG_8406.jpg" alt="Barra iluminada en verde con botellas" loading="lazy"><span class="n">01</span></div><h3>La barra</h3><p>Lo primero que veréis al entrar: barra iluminada y gin-tonics bien servidos.</p></div>
+      <div class="stop"><div class="ph"><img src="https://salacapricho.com/wp-content/uploads/2016/04/IMG_8404.jpg" alt="Vista general de la sala con barra y columnas" loading="lazy"><span class="n">02</span></div><h3>La sala principal</h3><p>Espacio abierto alrededor de la barra para moverse, brindar y bailar.</p></div>
+      <div class="stop"><div class="ph"><img src="https://salacapricho.com/wp-content/uploads/2016/04/IMG_8403.jpg" alt="Sofás de capitoné bajo luz rosa" loading="lazy"><span class="n">03</span></div><h3>Zona de sofás</h3><p>Capitoné y luz rosa: el rincón de las fotos y de las conversaciones largas.</p></div>
+      <div class="stop"><div class="ph"><img src="https://salacapricho.com/wp-content/uploads/2016/04/IMG_8400.jpg" alt="Sala lounge en tonos naranjas" loading="lazy"><span class="n">04</span></div><h3>El Lounge</h3><p>La segunda sala, con su propia barra. Funciona sola o como parte del evento.</p></div>
+      <div class="stop"><div class="ph"><img src="https://salacapricho.com/wp-content/uploads/2016/04/IMG_8402.jpg" alt="Copas de cóctel azules y rosas sobre la barra" loading="lazy"><span class="n">05</span></div><h3>Barra libre</h3><p>Cerveza, vino, refrescos o primeras marcas. Vosotros elegís cuántas horas.</p></div>
+      <div class="stop"><div class="ph"><img src="https://salacapricho.com/wp-content/uploads/2017/11/14876628_1628747580755973_2640764049322727897_o.jpg" alt="Sala llena de gente en plena fiesta" loading="lazy"><span class="n">06</span></div><h3>Y a bailar</h3><p>Con DJ o con concierto en directo de rumbas, flamenco o pop-rock.</p></div>
+    </div>
+    <div class="wrap">
+      <div class="v360 reveal">
+        <div><p class="eyebrow">Tour 360º</p><h2 style="font-size:clamp(30px,3.6vw,46px);margin:14px 0 16px">Visítanos sin moverte de casa</h2><p class="lead">Recorre la sala en 360º. Si te encaja, te enseñamos el resto en persona.</p></div>
+        <div class="frame"><iframe loading="lazy" title="Tour virtual 360º de Sala Capricho" src="https://www.google.com/maps/embed?pb=!4v1544567424378!6m8!1m7!1sCAoSLEFGMVFpcE9KaVE4ZzRNakR1anU4WkJqUHlPYWhPd2Y3YVBQTUNiMWEtMllx!2m2!1d40.45354391348734!2d-3.677718648056839!3f317.8052920603344!4f-9.680322259395979!5f0.7820865974627469" allowfullscreen></iframe></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="shead reveal"><div><p class="eyebrow">Así de fácil</p><h2>Tu fiesta en <em>tres pasos</em></h2></div></div>
+      <div class="steps">
+        <div class="step reveal"><h3>Cuéntanos tu idea</h3><p>Rellena el formulario o escríbenos por WhatsApp: fecha, número de invitados y tipo de celebración.</p></div>
+        <div class="step reveal"><h3>Te enviamos propuesta</h3><p>Sala, menú, barra libre y extras ajustados a tu presupuesto. Sin compromiso.</p></div>
+        <div class="step reveal"><h3>Tú solo disfruta</h3><p>Nosotros montamos, servimos y recogemos. Vosotros, a celebrar.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap teaser">
+      <div class="mosaic reveal">
+        <img src="https://salacapricho.com/wp-content/uploads/2016/04/catering_inaguracion_discoteca_lyo_LLiria_2012-1.jpg" alt="Mesa de catering iluminada" loading="lazy">
+        <img src="https://salacapricho.com/wp-content/uploads/2016/04/IMG_4219.jpg" alt="Brochetas de pollo" loading="lazy">
+        <img src="https://salacapricho.com/wp-content/uploads/2016/04/IMG_4224.jpg" alt="Saquitos de queso de cabra" loading="lazy">
+      </div>
+      <div class="reveal">
+        <p class="eyebrow">Celebraciones</p>
+        <h2 style="margin-top:14px">Comida, bebida y <em>todo lo demás</em></h2>
+        <div class="pricelist">
+          <div><span>Menús cóctel</span><b>desde 27 €/pers.</b></div>
+          <div><span>Barra libre</span><b>desde 18 €/pers.</b></div>
+          <div><span>Concierto en directo</span><b>desde 600 €</b></div>
+          <div><span>Fotógrafo, tarta y más</span><b>a medida</b></div>
+        </div>
+        <p style="color:var(--dim);font-size:13px;margin:-22px 0 28px">Precios sin IVA.</p>
+        <a href="#celebraciones" class="btn btn-gold">Ver todo lo que puedes contratar <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="band dark reveal">
+        <img src="https://salacapricho.com/wp-content/uploads/2017/11/15326094_1645796425717755_6966720724774702999_o.jpg" alt="" loading="lazy">
+        <p class="eyebrow">Fechas limitadas</p>
+        <h2>¿Tienes ya la fecha? <em>Reserva tu sala</em> antes de que vuele</h2>
+        <div class="ctas"><a href="#contacto" class="btn btn-gold">Pide presupuesto <span class="arrow">→</span></a><a href="https://wa.me/34691491596" class="btn btn-ghost" target="_blank" rel="noopener">WhatsApp 691 491 596</a></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== CELEBRACIONES ===================== -->
+<div class="page" id="p-celebraciones">
+  <div class="phero"><div class="wrap">
+    <p class="eyebrow">Celebraciones</p>
+    <h1>Todo lo que necesitas <em>para tu fiesta</em></h1>
+    <p class="lead">Elige menú, barra libre y extras, o pídenos un pack cerrado. Precios por persona salvo que se indique lo contrario. Todos los precios son sin IVA.</p>
+  </div></div>
+  <nav class="subnav" aria-label="Secciones"><div class="wrap">
+    <a href="#ev" data-scroll>Tipos de evento</a><a href="#menus" data-scroll>Menús</a><a href="#barra" data-scroll>Barra libre</a><a href="#bandejas" data-scroll>Bandejas</a><a href="#extras" data-scroll>Música y extras</a><a href="#calculadora" data-scroll>Calcula tu presupuesto</a>
+  </div></nav>
+
+  <section id="ev" style="padding-top:80px">
+    <div class="wrap">
+      <div class="shead"><div><p class="eyebrow">Para cada ocasión</p><h2>¿Qué celebramos?</h2></div></div>
+      <div class="types">
+        <article class="type reveal"><img src="https://salacapricho.com/wp-content/uploads/2022/04/joyful-friends-with-birthday-cake-1-1120x746-1.jpg" alt="Amigos celebrando un cumpleaños con tarta" loading="lazy"><div class="in"><h3>Cumpleaños</h3><p>Para todas las edades: de fiestas light a celebraciones por todo lo alto. Sala privada, barra libre y vuestra música.</p></div></article>
+        <article class="type reveal"><img src="https://salacapricho.com/wp-content/uploads/2022/04/three-beautiful-girls-resting-at-party-1.jpg" alt="Amigas brindando en una graduación" loading="lazy"><div class="in"><h3>Graduaciones</h3><p>Cena cóctel y fiesta en el mismo sitio. Precios especiales para grupos grandes.</p></div></article>
+        <article class="type reveal"><img src="https://salacapricho.com/wp-content/uploads/2022/04/couple-of-young-friends-having-fun-drinking-at-party-drunk-people-dancing-together-1120x746-1.jpg" alt="Compañeros de trabajo bailando en una fiesta" loading="lazy"><div class="in"><h3>Fiestas de empresa</h3><p>Cenas de Navidad, afterworks y presentaciones. Factura a empresa.</p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="menus" style="padding-top:20px">
+    <div class="wrap">
+      <div class="shead reveal"><div><p class="eyebrow">Gastronomía</p><h2>Menús <em>cóctel</em></h2></div><p class="lead">Servidos de pie o en zona de sofás. Mínimo 30 personas. Todos incluyen bebida soft: vino, cerveza y refrescos.</p></div>
+      <div class="menus">
+        <article class="mcard reveal">
+          <div class="top"><img src="https://salacapricho.com/wp-content/uploads/2018/09/37383565_494342841011956_791214859474698240_n.jpg" alt="Mini sándwiches y chapatas" loading="lazy"></div>
+          <div class="in">
+            <h3>Menú Low Cost</h3>
+            <div class="price">27 € <small>/ persona + IVA</small></div>
+            <p class="cond">Mínimo 30 personas · 8 pinchos, 12 piezas</p>
+            <ul>
+              <li>Tabla de ibéricos</li><li>Tabla de quesos</li><li>Mini sándwich de ensaladilla</li><li>Mini chapata de jamón ibérico y tomate</li><li>Mini chapata de lacón a la gallega</li><li>Croissant de ensalada americana</li><li>Tirabuzón de pollo crujiente</li><li>Mini burger de buey</li><li class="inc">Bebida soft durante 1 hora (vino, cerveza y refrescos)</li>
+            </ul>
+            <a href="#contacto" class="btn btn-ghost" data-pick="Menú Low Cost">Quiero este menú</a>
+          </div>
+        </article>
+        <article class="mcard feat reveal">
+          <div class="top"><img src="https://salacapricho.com/wp-content/uploads/2016/04/IMG_4217.jpg" alt="Vasitos de guacamole con nachos" loading="lazy"><span class="badge">EL MÁS PEDIDO</span></div>
+          <div class="in">
+            <h3>Menú Cóctel</h3>
+            <div class="price">38 € <small>/ persona + IVA</small></div>
+            <p class="cond">Mínimo 30 personas</p>
+            <ul>
+              <li>Vasito de guacamole con nachos</li><li>Salmorejo cordobés</li><li>Brocheta de melón con jamón</li><li>Saquitos de queso de cabra</li><li>Mini chapata de jamón ibérico</li><li>Mini bol de ensaladilla rusa</li><li>Wrap de salmón</li><li>Brocheta de langostino en tempura</li><li>Salpicón de pulpo</li><li>Mini rollito de primavera</li><li>Mini hamburguesa de buey</li><li>Trufas heladas</li><li class="inc">Bebida soft durante 1 h 30 min (vino, cerveza y refrescos)</li>
+            </ul>
+            <a href="#contacto" class="btn btn-gold" data-pick="Menú Cóctel">Quiero este menú</a>
+          </div>
+        </article>
+        <article class="mcard reveal">
+          <div class="top"><img src="https://salacapricho.com/wp-content/uploads/2023/09/2017-10-25-19.51.57.jpg" alt="Mesa de menú cóctel premium" loading="lazy"><span class="badge" style="background:var(--rose);color:#fff">PREMIUM</span></div>
+          <div class="in">
+            <h3>Menú Cóctel Premium</h3>
+            <div class="price">49 € <small>/ persona + IVA</small></div>
+            <p class="cond">Mínimo 30 personas · jamón cortado a cuchillo</p>
+            <ul>
+              <li>Jamón cortado a cuchillo</li><li>Quesos, uvas, nueces y dátiles</li><li>Zurito de salmorejo y huevo hilado</li><li>Crema templada de marisco</li><li>Tartar de salmón en tartaleta</li><li>Guacamole natural con nachos</li><li>Croquetas de gamba y kimchi</li><li>Mejillones tigre</li><li>Brocheta de pollo a la gaditana</li><li>Tacos de calamar en alioli de lima</li><li>Rollitos burger agridulces</li><li>Brocheta de frutas · trufas de chocolate</li><li class="inc">Bebida soft durante 2 horas (vino, cerveza y refrescos)</li>
+            </ul>
+            <a href="#contacto" class="btn btn-ghost" data-pick="Menú Cóctel Premium">Quiero este menú</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="barra" style="padding-top:20px">
+    <div class="wrap">
+      <div class="shead reveal"><div><p class="eyebrow">Bebida</p><h2>Barra <em>libre</em></h2></div></div>
+      <div class="drinks">
+        <div class="dcard reveal"><h3>Cerveza, refrescos o tinto de verano</h3><div class="price">18 € <small>/ pers.</small></div><p>2 horas.</p></div>
+        <div class="dcard reveal"><h3>Primeras marcas · 3 horas</h3><div class="price">30 € <small>/ pers.</small></div><p>Combinados de primeras marcas, cerveza y refrescos.</p></div>
+        <div class="dcard reveal"><h3>Primeras marcas · 4 horas</h3><div class="price">35 € <small>/ pers.</small></div><p>Para las fiestas que no quieren acabar.</p></div>
+      </div>
+      <div class="drinks" style="margin-top:22px">
+        <div class="dcard reveal"><h3>Bonocopas 50</h3><div class="price">400 €</div><p>50 copas para repartir como queráis.</p></div>
+        <div class="dcard reveal"><h3>Bonocopas 100</h3><div class="price">700 €</div><p>100 copas. La opción más económica por copa.</p></div>
+        <div class="dcard reveal"><h3>Barril de cerveza 30 L</h3><div class="price">240 €</div><p>Unas 90 cañas <span class="tbd">confirmar</span>.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="bandejas" style="padding-top:20px">
+    <div class="wrap">
+      <div class="shead reveal"><div><p class="eyebrow">A tu medida</p><h2>Bandejas <em>por encargo</em></h2></div><p class="lead">Para completar un menú o montar tu propio picoteo.</p></div>
+      <div class="trays reveal">
+        <div class="tray"><div><h4>Mini burgers</h4><p>Buey o pollo · 20 uds.</p></div><b>30 €</b></div>
+        <div class="tray"><div><h4>Croissants</h4><p>Vegetal, cangrejo, york-queso o americana · 20 uds.</p></div><b>25 €</b></div>
+        <div class="tray"><div><h4>Sándwiches</h4><p>Ensaladilla, york y queso crema, paté con arándanos · 20 uds.</p></div><b>25 €</b></div>
+        <div class="tray"><div><h4>Wraps</h4><p>Salmón, pollo o ternera con salsa de yogur · 20 uds.</p></div><b>25 €</b></div>
+        <div class="tray"><div><h4>Mini chapatas</h4><p>Jamón ibérico, lacón a la gallega, atún y pimientos · 20 uds.</p></div><b>25 €</b></div>
+        <div class="tray"><div><h4>Brochetas</h4><p>Mozzarella y cherry · 20 uds.</p></div><b>25 €</b></div>
+        <div class="tray"><div><h4>Tortilla de patatas</h4><p>Entera</p></div><b>17 €</b></div>
+        <div class="tray"><div><h4>Tarta de cumpleaños</h4><p>Con velas y sorpresa</p></div><b>A presupuestar</b></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="extras" style="padding-top:20px">
+    <div class="wrap">
+      <div class="shead reveal"><div><p class="eyebrow">El toque final</p><h2>Música en directo <em>y extras</em></h2></div></div>
+      <div class="extras">
+        <div class="xcard reveal"><img src="https://salacapricho.com/wp-content/uploads/2018/09/7359_xth.jpg" alt="Grupo de rumba en directo" loading="lazy"><div><h4>Concierto de rumbas y flamenco</h4><b>desde 600 €</b></div></div>
+        <div class="xcard reveal"><img src="https://salacapricho.com/wp-content/uploads/2018/09/concierto-598x360.jpg" alt="Banda de pop-rock" loading="lazy"><div><h4>Concierto de pop-rock</h4><b>desde 800 €</b></div></div>
+        <div class="xcard reveal"><img src="https://salacapricho.com/wp-content/uploads/2018/09/1d7443a8b2769746f4f13fe8eccf8401.jpg" alt="Fotógrafo de eventos" loading="lazy"><div><h4>Fotógrafo para tu evento</h4><b>A presupuestar</b></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="calculadora" style="padding-top:20px">
+    <div class="wrap">
+      <div class="shead reveal"><div><p class="eyebrow">Orientativo</p><h2>Calcula tu <em>presupuesto</em></h2></div><p class="lead">Juega con las opciones y envíanos el resultado. Te confirmamos el precio final.</p></div>
+      <div class="calc reveal">
+        <div>
+          <div class="field"><label for="cPax">Invitados</label><div class="range"><input type="range" id="cPax" min="30" max="160" value="40"><output id="oPax">40</output></div></div>
+          <div class="field"><span class="flabel">Menú</span><div class="seg" id="cMenu">
+            <label><input type="radio" name="m" value="0" data-n="Sin menú"><span>Sin menú</span></label>
+            <label><input type="radio" name="m" value="27" data-n="Low Cost" checked><span>Low Cost · 27 €</span></label>
+            <label><input type="radio" name="m" value="38" data-n="Cóctel"><span>Cóctel · 38 €</span></label>
+            <label><input type="radio" name="m" value="49" data-n="Cóctel Premium"><span>Premium · 49 €</span></label>
+          </div></div>
+          <div class="field"><span class="flabel">Barra libre</span><div class="seg" id="cBar">
+            <label><input type="radio" name="b" value="0" data-n="Sin barra libre"><span>No</span></label>
+            <label><input type="radio" name="b" value="18" data-n="Cerveza 2 h"><span>Cerveza 2 h · 18 €</span></label>
+            <label><input type="radio" name="b" value="30" data-n="Primeras marcas 3 h" checked><span>Alcohol 3 h · 30 €</span></label>
+            <label><input type="radio" name="b" value="35" data-n="Primeras marcas 4 h"><span>Alcohol 4 h · 35 €</span></label>
+          </div></div>
+          <div class="field"><span class="flabel">Extras</span><div class="seg" id="cEx">
+            <label><input type="checkbox" value="600" data-n="Rumbas y flamenco"><span>Rumbas · desde 600 €</span></label>
+            <label><input type="checkbox" value="800" data-n="Pop-rock"><span>Pop-rock · desde 800 €</span></label>
+                        <label><input type="checkbox" value="240" data-n="Barril 30 L"><span>Barril · 240 €</span></label>
+          </div></div>
+        </div>
+        <div class="total">
+          <p class="eyebrow">Estimación</p>
+          <div class="big" id="oTot">0 €</div>
+          <p class="pp" id="oPP"></p>
+          <ul id="oList"></ul>
+          <a href="#contacto" class="btn btn-gold" id="calcSend" style="justify-content:center">Pedir presupuesto con esto <span class="arrow">→</span></a>
+          <small>Precio orientativo, sin IVA. Fotógrafo y tarta se presupuestan aparte. El alquiler de la sala y la disponibilidad se confirman en el presupuesto.</small>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== GALERÍA ===================== -->
+<div class="page" id="p-galeria">
+  <div class="phero"><div class="wrap">
+    <p class="eyebrow">Galería</p>
+    <h1>Así se vive <em>Capricho</em></h1>
+    <p class="lead">Las salas, la comida y algunas de las fiestas que hemos celebrado.</p>
+  </div></div>
+  <section style="padding-top:10px"><div class="wrap">
+    <div class="filters" id="filters">
+      <button class="on" data-f="all">Todo</button><button data-f="sala">Las salas</button><button data-f="fiesta">Fiestas</button><button data-f="comida">Comida</button>
+    </div>
+    <div class="masonry" id="masonry"></div>
+  </div></section>
+</div>
+
+<!-- ===================== CONTACTO ===================== -->
+<div class="page" id="p-contacto">
+  <div class="phero"><div class="wrap">
+    <p class="eyebrow">Contacto y presupuesto</p>
+    <h1>Cuéntanos <em>tu evento</em></h1>
+    <p class="lead">Cuanto más nos cuentes, más ajustado será el presupuesto. Te respondemos en menos de 24 horas <span class="tbd">confirmar</span>.</p>
+  </div></div>
+  <section style="padding-top:10px"><div class="wrap cgrid">
+    <div class="form">
+      <form id="form" novalidate>
+        <div class="fstep">
+          <h3><i>01</i> Sobre ti</h3>
+          <div class="row">
+            <div class="field"><label for="fn">Nombre y apellidos *</label><input class="inp" id="fn" name="Nombre" required autocomplete="name"></div>
+            <div class="field"><label for="ft">Teléfono *</label><input class="inp" id="ft" name="Teléfono" type="tel" required autocomplete="tel"></div>
+          </div>
+          <div class="row">
+            <div class="field"><label for="fe">Email *</label><input class="inp" id="fe" name="Email" type="email" required autocomplete="email"></div>
+            <div class="field"><label for="fc">¿Cómo prefieres que te contactemos?</label><select class="inp" id="fc" name="Contacto preferido"><option>WhatsApp</option><option>Llamada</option><option>Email</option></select></div>
+          </div>
+          <div class="field"><label for="fem">Empresa (si aplica)</label><input class="inp" id="fem" name="Empresa" autocomplete="organization"></div>
+        </div>
+
+        <div class="fstep">
+          <h3><i>02</i> El evento</h3>
+          <div class="field"><span class="flabel">Tipo de celebración *</span><div class="seg">
+            <label><input type="radio" name="Tipo" value="Cumpleaños" checked><span>Cumpleaños</span></label>
+            <label><input type="radio" name="Tipo" value="Graduación"><span>Graduación</span></label>
+            <label><input type="radio" name="Tipo" value="Empresa"><span>Empresa</span></label>
+            <label><input type="radio" name="Tipo" value="Despedida"><span>Despedida</span></label>
+            <label><input type="radio" name="Tipo" value="Otro"><span>Otro</span></label>
+          </div></div>
+          <div class="row row3">
+            <div class="field"><label for="fd">Fecha *</label><input class="inp" id="fd" name="Fecha" type="date" required></div>
+            <div class="field"><label for="fh">Hora de inicio</label><input class="inp" id="fh" name="Hora" type="time" value="21:00"></div>
+            <div class="field"><label for="fdu">Duración</label><select class="inp" id="fdu" name="Duración"><option>2 horas</option><option selected>3 horas</option><option>4 horas</option><option>5 horas o más</option></select></div>
+          </div>
+          <div class="row">
+            <div class="field"><label for="fp">Nº de invitados *</label><input class="inp" id="fp" name="Invitados" type="number" min="1" required placeholder="Ej. 40"></div>
+            <div class="field"><label for="fs">Sala</label><select class="inp" id="fs" name="Sala"><option>Me da igual, recomendadme</option><option>Sala 01 · La Pista</option><option>Sala 02 · El Lounge</option><option>Las dos salas</option></select></div>
+          </div>
+          <div class="field"><label for="ffl">¿Tienes flexibilidad de fecha?</label><select class="inp" id="ffl" name="Flexibilidad"><option>No, es esa fecha</option><option>Sí, ± unos días</option><option>Sí, cualquier día de ese mes</option></select></div>
+        </div>
+
+        <div class="fstep">
+          <h3><i>03</i> Comida y bebida</h3>
+          <div class="field"><span class="flabel">Menú</span><div class="checks" id="fMenu">
+            <label class="ck"><input type="radio" name="Menú" value="Sin comida">Sin comida</label>
+            <label class="ck"><input type="radio" name="Menú" value="Menú Low Cost">Menú Low Cost <em>27 €</em></label>
+            <label class="ck"><input type="radio" name="Menú" value="Menú Cóctel">Menú Cóctel <em>38 €</em></label>
+            <label class="ck"><input type="radio" name="Menú" value="Menú Cóctel Premium">Cóctel Premium <em>49 €</em></label>
+                        <label class="ck"><input type="radio" name="Menú" value="Bandejas a medida">Bandejas a medida</label>
+          </div></div>
+          <div class="field"><span class="flabel">Barra libre</span><div class="checks">
+            <label class="ck"><input type="radio" name="Barra libre" value="No">No, solo consumiciones</label>
+            <label class="ck"><input type="radio" name="Barra libre" value="Cerveza/refrescos 2 h">Cerveza y refrescos 2 h <em>18 €</em></label>
+            <label class="ck"><input type="radio" name="Barra libre" value="Primeras marcas 3 h">Primeras marcas 3 h <em>30 €</em></label>
+            <label class="ck"><input type="radio" name="Barra libre" value="Primeras marcas 4 h">Primeras marcas 4 h <em>35 €</em></label>
+            <label class="ck"><input type="radio" name="Barra libre" value="Bonocopas">Bonocopas 50 / 100</label>
+            <label class="ck"><input type="radio" name="Barra libre" value="Barril 30 L">Barril de cerveza 30 L</label>
+          </div></div>
+          <div class="field"><label for="fal">Alergias o dietas especiales</label><input class="inp" id="fal" name="Alergias" placeholder="Celíacos, vegetarianos, alergia a frutos secos…"></div>
+        </div>
+
+        <div class="fstep">
+          <h3><i>04</i> Extras</h3>
+          <div class="checks">
+            <label class="ck"><input type="checkbox" name="Extras" value="Concierto rumbas y flamenco">Rumbas y flamenco <em>desde 600 €</em></label>
+            <label class="ck"><input type="checkbox" name="Extras" value="Concierto pop-rock">Pop-rock en directo <em>desde 800 €</em></label>
+            <label class="ck"><input type="checkbox" name="Extras" value="Fotógrafo">Fotógrafo <em>a presupuestar</em></label>
+            <label class="ck"><input type="checkbox" name="Extras" value="Tarta de cumpleaños">Tarta de cumpleaños <em>a presupuestar</em></label>
+            <label class="ck"><input type="checkbox" name="Extras" value="DJ propio">Traemos nuestro DJ</label>
+            <label class="ck"><input type="checkbox" name="Extras" value="Decoración">Decoración / globos</label>
+          </div>
+        </div>
+
+        <div class="fstep">
+          <h3><i>05</i> Lo último</h3>
+          <div class="row">
+            <div class="field"><label for="fb">Presupuesto aproximado</label><select class="inp" id="fb" name="Presupuesto"><option>Prefiero no decirlo</option><option>Menos de 1.000 €</option><option>1.000 – 2.500 €</option><option>2.500 – 5.000 €</option><option>Más de 5.000 €</option></select></div>
+            <div class="field"><label for="fhow">¿Cómo nos has conocido?</label><select class="inp" id="fhow" name="Origen"><option>Google</option><option>Instagram</option><option>Me lo recomendaron</option><option>Ya estuve en Capricho</option><option>Otro</option></select></div>
+          </div>
+          <div class="field"><label for="fm">Cuéntanos más</label><textarea class="inp" id="fm" name="Mensaje" placeholder="Temática, sorpresas, horarios especiales, lo que se te ocurra…"></textarea></div>
+          <label class="legal"><input type="checkbox" id="fok" required> <span>He leído y acepto la <a href="#">política de privacidad</a>. Usaremos tus datos solo para responder a tu solicitud.</span></label>
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <button class="btn btn-gold" type="submit">Enviar solicitud <span class="arrow">→</span></button>
+            <button class="btn btn-ghost" type="button" id="toWa">Enviar por WhatsApp</button>
+          </div>
+          <p id="ferr" style="color:var(--rose);font-size:14px;margin-top:14px"></p>
+        </div>
+      </form>
+      <div class="sent" id="sent">
+        <p class="eyebrow">Solicitud recibida</p>
+        <h2 style="margin:16px 0">¡Gracias! <em>Ya estamos en ello</em></h2>
+        <p class="lead" style="margin:0 auto">Te contactamos en menos de 24 horas con tu propuesta. Si es urgente, llámanos al 691 491 596.</p>
+      </div>
+    </div>
+
+    <aside class="side">
+      <div class="info">
+        <a href="tel:+34691491596"><span class="ic">✆</span><span><small>Teléfono</small>691 491 596</span></a>
+        <a href="https://wa.me/34691491596" target="_blank" rel="noopener"><span class="ic">◉</span><span><small>WhatsApp</small>Escríbenos ahora</span></a>
+        <a href="mailto:info@salacapricho.com"><span class="ic">✉</span><span><small>Email</small>info@salacapricho.com</span></a>
+        <a href="https://maps.google.com/?q=Principe+de+Vergara+225+Madrid" target="_blank" rel="noopener"><span class="ic">⌖</span><span><small>Dirección</small>Príncipe de Vergara 225, Madrid</span></a>
+      </div>
+      <div class="map"><iframe loading="lazy" title="Mapa de Sala Capricho" src="https://maps.google.com/maps?q=Calle+del+Pr%C3%ADncipe+de+Vergara+225,+28002+Madrid&z=16&output=embed"></iframe></div>
+      <div class="info faq">
+        <p class="eyebrow" style="margin-bottom:6px">Preguntas frecuentes</p>
+        <details><summary>¿Hay un mínimo de personas?</summary><p>Los menús son a partir de 30 personas. Cada sala tiene capacidad para 80 invitados, y juntas hasta 160.</p></details>
+        <details><summary>¿Los precios llevan IVA?</summary><p>No, todos los precios de la web son sin IVA.</p></details>
+        <details><summary>¿Cuánto cuesta alquilar la sala?</summary><p><span class="tbd">Pendiente</span> Explicar si la sala va incluida al contratar menú o barra libre.</p></details>
+        <details><summary>¿Cómo se confirma la reserva?</summary><p><span class="tbd">Pendiente</span> Señal, forma de pago y política de cancelación.</p></details>
+        <details><summary>¿Podemos traer nuestra música?</summary><p><span class="tbd">Pendiente</span></p></details>
+        <details><summary>¿Cómo llego?</summary><p>Estamos en Príncipe de Vergara 225. Metro más cercano: <span class="tbd">confirmar</span>.</p></details>
+      </div>
+    </aside>
+  </div></section>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div><a href="#inicio" class="logo"><b>CAPRICHO</b><small>GIN'S &amp; NIGHT CLUB</small></a><p style="color:var(--mute);margin-top:18px;max-width:300px;font-size:15px">Sala para eventos privados en Madrid. Cumpleaños, graduaciones y fiestas de empresa.</p></div>
+      <div><h4>La sala</h4><ul><li><a href="#inicio">Inicio</a></li><li><a href="#celebraciones">Celebraciones</a></li><li><a href="#galeria">Galería</a></li><li><a href="#contacto">Contacto</a></li></ul></div>
+      <div><h4>Contacto</h4><ul><li><a href="tel:+34691491596">691 491 596</a></li><li><a href="mailto:info@salacapricho.com">info@salacapricho.com</a></li><li>Príncipe de Vergara 225<br>28002 Madrid <span class="tbd">CP</span></li></ul></div>
+      <div><h4>Webs amigas</h4><ul><li><a href="https://celebratuevento.es" target="_blank" rel="noopener">Celebratuevento.es</a></li><li><a href="https://ritalabailaora.com" target="_blank" rel="noopener">Ritalabailaora.com</a></li><li><a href="https://bienpaga.com" target="_blank" rel="noopener">Bienpaga.com</a></li></ul></div>
+    </div>
+    <div class="fbottom"><span>© 2026 Sala Capricho</span><span><a href="#">Aviso legal</a> · <a href="#">Privacidad</a> · <a href="#">Cookies</a></span></div>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/34691491596?text=Hola%2C%20quiero%20informaci%C3%B3n%20para%20un%20evento" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.3-.4.8-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3Z"/></svg>
+</a>
+<div class="note" id="note"><button aria-label="Cerrar nota" onclick="this.parentNode.remove()">×</button><b>Propuesta de diseño.</b> Lo marcado en <span class="tbd">rosa discontinuo</span> son datos que faltan por confirmar.</div>
+
+<div class="lb" id="lb" role="dialog" aria-label="Foto ampliada"><button class="x" aria-label="Cerrar">×</button><button class="pv" aria-label="Anterior">‹</button><img alt=""><button class="nx" aria-label="Siguiente">›</button></div>
+
+<script>
+const U='https://salacapricho.com/wp-content/uploads/';
+const PHOTOS=[
+ ['2017/11/14889890_1628747684089296_96755039115411709_o.jpg','fiesta','Noche en Capricho'],
+ ['2016/04/IMG_8406.jpg','sala','La barra'],
+ ['2017/11/14876628_1628747580755973_2640764049322727897_o.jpg','fiesta','Noche de fiesta'],
+ ['2016/04/IMG_8404.jpg','sala','Sala principal'],
+ ['2016/04/IMG_4217.jpg','comida','Guacamole con nachos'],
+ ['2016/04/IMG_8400.jpg','sala','El Lounge'],
+ ['2017/11/15326094_1645796425717755_6966720724774702999_o.jpg','fiesta','Celebración en la sala'],
+ ['2016/04/IMG_4219.jpg','comida','Brochetas'],
+ ['2016/04/IMG_8402.jpg','sala','Cócteles'],
+ ['2016/04/IMG_4220.jpg','comida','Croquetas'],
+ ['2016/04/IMG_8403.jpg','sala','Zona de sofás'],
+ ['2016/04/catering_inaguracion_discoteca_lyo_LLiria_2012-1.jpg','comida','Mesa de catering'],
+ ['2016/04/IMG_4224.jpg','comida','Saquitos de queso de cabra'],
+ ['2016/04/IMG_4222.jpg','comida','Entrantes'],
+ ['2016/04/IMG_4218.jpg','comida','Pinchos']
+];
+
+/* router */
+const pages=['inicio','celebraciones','galeria','contacto'];
+function route(){
+  const h=location.hash.slice(1)||'inicio';
+  const p=pages.includes(h)?h:null;
+  if(!p){const el=document.getElementById(h); if(el) el.scrollIntoView(); return;}
+  document.querySelectorAll('.page').forEach(e=>e.classList.toggle('on',e.id==='p-'+p));
+  document.querySelectorAll('.menu a[data-p]').forEach(a=>a.classList.toggle('on',a.dataset.p===p));
+  curPage=p; setHdr();
+  document.getElementById('menu').classList.remove('open');
+  window.scrollTo({top:0,behavior:'instant'});
+  observe();
+}
+window.addEventListener('hashchange',route);
+document.addEventListener('click',e=>{
+  const a=e.target.closest('a[data-scroll]');
+  if(a){e.preventDefault();document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'});}
+  const pick=e.target.closest('[data-pick]');
+  if(pick){setTimeout(()=>{const r=document.querySelector(`#fMenu input[value="${pick.dataset.pick}"]`); if(r) r.checked=true;},50);}
+});
+document.getElementById('burger').onclick=()=>{document.getElementById('menu').classList.toggle('open');setHdr()};
+const hdr=document.getElementById('hdr');let curPage='inicio';
+function setHdr(){hdr.classList.toggle('solid',curPage!=='inicio'||scrollY>40||document.getElementById('menu').classList.contains('open'))}
+addEventListener('scroll',setHdr,{passive:true});
+
+/* reveal */
+let io;
+function observe(){
+  io&&io.disconnect();
+  io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}}),{threshold:.12});
+  document.querySelectorAll('.page.on .reveal:not(.in)').forEach(el=>io.observe(el));
+}
+
+/* tour */
+const track=document.getElementById('track');
+document.getElementById('tnext').onclick=()=>track.scrollBy({left:track.querySelector('.stop').offsetWidth+22,behavior:'smooth'});
+document.getElementById('tprev').onclick=()=>track.scrollBy({left:-(track.querySelector('.stop').offsetWidth+22),behavior:'smooth'});
+
+/* gallery */
+const mas=document.getElementById('masonry');
+mas.innerHTML=PHOTOS.map((p,i)=>`<figure data-c="${p[1]}" data-i="${i}"><img src="${U+p[0]}" alt="${p[2]}" loading="lazy">${p[1]==='comida'?'':`<figcaption>${p[2]}</figcaption>`}</figure>`).join('');
+document.getElementById('filters').onclick=e=>{
+  const b=e.target.closest('button'); if(!b) return;
+  document.querySelectorAll('#filters button').forEach(x=>x.classList.toggle('on',x===b));
+  mas.querySelectorAll('figure').forEach(f=>f.style.display=(b.dataset.f==='all'||f.dataset.c===b.dataset.f)?'':'none');
+};
+const lb=document.getElementById('lb'),lbi=lb.querySelector('img');let cur=0;
+function vis(){return [...mas.querySelectorAll('figure')].filter(f=>f.style.display!=='none').map(f=>+f.dataset.i)}
+function show(i){cur=i;lbi.src=U+PHOTOS[i][0];lbi.alt=PHOTOS[i][2];lb.classList.add('on')}
+function step(d){const v=vis();show(v[(v.indexOf(cur)+d+v.length)%v.length])}
+mas.onclick=e=>{const f=e.target.closest('figure'); if(f) show(+f.dataset.i)};
+lb.querySelector('.x').onclick=()=>lb.classList.remove('on');
+lb.querySelector('.pv').onclick=()=>step(-1);
+lb.querySelector('.nx').onclick=()=>step(1);
+lb.onclick=e=>{if(e.target===lb) lb.classList.remove('on')};
+addEventListener('keydown',e=>{if(!lb.classList.contains('on'))return;if(e.key==='Escape')lb.classList.remove('on');if(e.key==='ArrowRight')step(1);if(e.key==='ArrowLeft')step(-1)});
+
+/* calculator */
+const eur=n=>n.toLocaleString('es-ES',{maximumFractionDigits:0})+' €';
+let calcSummary='';
+function calc(){
+  const pax=+cPax.value; oPax.value=pax;
+  const m=document.querySelector('#cMenu input:checked'), b=document.querySelector('#cBar input:checked');
+  const ex=[...document.querySelectorAll('#cEx input:checked')];
+  const lines=[];
+  if(+m.value) lines.push([`Menú ${m.dataset.n} × ${pax}`, m.value*pax]);
+  if(+b.value) lines.push([`Barra libre ${b.dataset.n} × ${pax}`, b.value*pax]);
+  ex.forEach(x=>lines.push([x.dataset.n,+x.value]));
+  const tot=lines.reduce((s,l)=>s+l[1],0);
+  oTot.textContent=eur(tot);
+  oPP.textContent=pax?`+ IVA · ${eur(Math.round(tot/pax))} por persona · ${pax} invitados`:'';
+  oList.innerHTML=lines.map(l=>`<li><span>${l[0]}</span><span>${eur(l[1])}</span></li>`).join('')||'<li>Elige alguna opción</li>';
+  calcSummary=`${pax} invitados. ${lines.map(l=>l[0]).join(', ')}. Estimación: ${eur(tot)}.`;
+}
+document.querySelectorAll('#calculadora input').forEach(i=>i.addEventListener('input',calc));calc();
+document.getElementById('calcSend').addEventListener('click',()=>{
+  setTimeout(()=>{fp.value=cPax.value;fm.value='Según la calculadora: '+calcSummary;
+    const mn={'Low Cost':'Menú Low Cost','Cóctel':'Menú Cóctel','Cóctel Premium':'Menú Cóctel Premium'}[document.querySelector('#cMenu input:checked').dataset.n];
+    if(mn) document.querySelector(`#fMenu input[value="${mn}"]`).checked=true;},60);
+});
+
+/* form */
+const form=document.getElementById('form');
+function check(){
+  const bad=[...form.querySelectorAll('[required]')].filter(i=>i.type==='checkbox'?!i.checked:!i.value.trim());
+  form.querySelectorAll('.inp').forEach(i=>i.style.borderColor='');
+  bad.forEach(i=>{if(i.classList.contains('inp'))i.style.borderColor='var(--rose)'});
+  ferr.textContent=bad.length?'Revisa los campos obligatorios (*) y acepta la política de privacidad.':'';
+  return !bad.length;
+}
+function summary(){
+  const fd=new FormData(form),o={};
+  for(const [k,v] of fd){if(!v)continue;o[k]=o[k]?o[k]+', '+v:v}
+  return Object.entries(o).map(([k,v])=>`${k}: ${v}`).join('\n');
+}
+form.onsubmit=e=>{e.preventDefault();if(!check())return;form.style.display='none';sent.classList.add('on');sent.scrollIntoView({behavior:'smooth',block:'center'})};
+toWa.onclick=()=>{if(!check())return;open('https://wa.me/34691491596?text='+encodeURIComponent('Hola, quiero pedir presupuesto:\n'+summary()),'_blank')};
+
+route();
+setTimeout(()=>{const n=document.getElementById("note");if(n){n.style.transition="opacity .6s";n.style.opacity=0;setTimeout(()=>n.remove(),700)}},8000);
+</script>
+</body>
+</html>
