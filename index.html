@@ -217,7 +217,10 @@ header:not(.solid) .logo small{color:var(--gold)}
 .total .pp{color:var(--lmute)}
 .total ul{list-style:none;margin:22px 0;font-size:14px;color:var(--lmute);flex:1}
 .total li{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.07)}
-.total small{font-size:12px;color:var(--lmute);margin-top:14px}
+.total .disc{margin-top:16px;padding:14px 16px;border-radius:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);font-size:13.5px;line-height:1.55;color:var(--light)}
+.total .disc b{display:block;color:var(--gold);font-weight:600;margin-bottom:4px}
+.total .disc ul{list-style:disc;margin:6px 0 0 18px;padding:0;color:var(--lmute);font-size:13px}
+.total .disc li{display:list-item;border:0;padding:2px 0}
 
 /* gallery */
 .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:34px}
@@ -491,14 +494,13 @@ footer .tbd{color:#f3a6c3;border-color:#f3a6c3}
 
   <section id="menus" style="padding-top:20px">
     <div class="wrap">
-      <div class="shead reveal"><div><p class="eyebrow">Gastronomía</p><h2>Menús <em>cóctel</em></h2></div><p class="lead">Servidos de pie o en zona de sofás. Mínimo 30 personas. Todos incluyen bebida soft: vino, cerveza y refrescos.</p></div>
+      <div class="shead reveal"><div><p class="eyebrow">Gastronomía</p><h2>Menús <em>cóctel</em></h2></div><p class="lead">Servidos de pie o en zona de sofás. Todos incluyen bebida soft: vino, cerveza y refrescos.</p></div>
       <div class="menus">
         <article class="mcard reveal">
           <div class="top"><img src="https://salacapricho.com/wp-content/uploads/2018/09/37383565_494342841011956_791214859474698240_n.jpg" alt="Mini sándwiches y chapatas" loading="lazy"></div>
           <div class="in">
             <h3>Menú Low Cost</h3>
             <div class="price">27 € <small>/ persona + IVA</small></div>
-            <p class="cond">Mínimo 30 personas</p>
             <ul>
               <li>Tabla de ibéricos</li><li>Tabla de quesos</li><li>Mini sándwich de ensaladilla</li><li>Mini chapata de jamón ibérico y tomate</li><li>Mini chapata de lacón a la gallega</li><li>Croissant de ensalada americana</li><li>Tirabuzón de pollo crujiente</li><li>Mini burger de buey</li><li class="inc">Bebida soft durante 1 hora (vino, cerveza y refrescos)</li>
             </ul>
@@ -510,7 +512,6 @@ footer .tbd{color:#f3a6c3;border-color:#f3a6c3}
           <div class="in">
             <h3>Menú Cóctel</h3>
             <div class="price">38 € <small>/ persona + IVA</small></div>
-            <p class="cond">Mínimo 30 personas</p>
             <ul>
               <li>Vasito de guacamole con nachos</li><li>Salmorejo cordobés</li><li>Brocheta de melón con jamón</li><li>Saquitos de queso de cabra</li><li>Mini chapata de jamón ibérico</li><li>Mini bol de ensaladilla rusa</li><li>Wrap de salmón</li><li>Brocheta de langostino en tempura</li><li>Salpicón de pulpo</li><li>Mini rollito de primavera</li><li>Mini hamburguesa de buey</li><li>Trufas heladas</li><li class="inc">Bebida soft durante 1 h 30 min (vino, cerveza y refrescos)</li>
             </ul>
@@ -522,7 +523,6 @@ footer .tbd{color:#f3a6c3;border-color:#f3a6c3}
           <div class="in">
             <h3>Menú Cóctel Premium</h3>
             <div class="price">49 € <small>/ persona + IVA</small></div>
-            <p class="cond">Mínimo 30 personas</p>
             <ul>
               <li>Jamón cortado a cuchillo</li><li>Quesos, uvas, nueces y dátiles</li><li>Zurito de salmorejo y huevo hilado</li><li>Crema templada de marisco</li><li>Tartar de salmón en tartaleta</li><li>Guacamole natural con nachos</li><li>Croquetas de gamba y kimchi</li><li>Mejillones tigre</li><li>Brocheta de pollo a la gaditana</li><li>Tacos de calamar en alioli de lima</li><li>Rollitos burger agridulces</li><li>Brocheta de frutas · trufas de chocolate</li><li class="inc">Bebida soft durante 2 horas (vino, cerveza y refrescos)</li>
             </ul>
@@ -581,7 +581,7 @@ footer .tbd{color:#f3a6c3;border-color:#f3a6c3}
       <div class="shead reveal"><div><p class="eyebrow">Orientativo</p><h2>Calcula tu <em>presupuesto</em></h2></div><p class="lead">Juega con las opciones y envíanos el resultado. Te confirmamos el precio final.</p></div>
       <div class="calc reveal">
         <div>
-          <div class="field"><label for="cPax">Invitados</label><div class="range"><input type="range" id="cPax" min="30" max="160" value="40"><output id="oPax">40</output></div></div>
+          <div class="field"><label for="cPax">Invitados</label><div class="range"><input type="range" id="cPax" min="10" max="160" value="40"><output id="oPax">40</output></div></div>
           <div class="field"><span class="flabel">Menú</span><div class="seg" id="cMenu">
             <label><input type="radio" name="m" value="0" data-n="Sin menú"><span>Sin menú</span></label>
             <label><input type="radio" name="m" value="27" data-n="Low Cost" checked><span>Low Cost · 27 €</span></label>
@@ -606,7 +606,7 @@ footer .tbd{color:#f3a6c3;border-color:#f3a6c3}
           <p class="pp" id="oPP"></p>
           <ul id="oList"></ul>
           <a href="#contacto" class="btn btn-gold" id="calcSend" style="justify-content:center">Pedir presupuesto con esto <span class="arrow">→</span></a>
-          <small>Precio orientativo, sin IVA. Fotógrafo y tarta se presupuestan aparte. El alquiler de la sala y la disponibilidad se confirman en el presupuesto.</small>
+          <div class="disc"><b>Precio orientativo (sin IVA)</b>Este cálculo es solo una referencia. El precio final puede variar:<ul><li>El alquiler de la sala en exclusividad se calcula en función del número de personas y de los servicios contratados.</li><li>El fotógrafo y la tarta se presupuestan aparte.</li><li>La disponibilidad depende de la fecha.</li></ul>Te confirmamos el precio exacto en tu presupuesto personalizado.</div>
         </div>
       </div>
     </div>
@@ -736,7 +736,7 @@ footer .tbd{color:#f3a6c3;border-color:#f3a6c3}
       <div class="map"><iframe loading="lazy" title="Mapa de Sala Capricho" src="https://maps.google.com/maps?q=Calle+del+Pr%C3%ADncipe+de+Vergara+225,+28002+Madrid&z=16&output=embed"></iframe></div>
       <div class="info faq">
         <p class="eyebrow" style="margin-bottom:6px">Preguntas frecuentes</p>
-        <details><summary>¿Hay un mínimo de personas?</summary><p>Los menús son a partir de 30 personas. Cada sala tiene capacidad para 80 invitados, y juntas hasta 160.</p></details>
+        <details><summary>¿Cuántas personas caben?</summary><p>Cada sala tiene capacidad para 80 invitados, y juntas hasta 160.</p></details>
         <details><summary>¿Los precios llevan IVA?</summary><p>No, todos los precios de la web son sin IVA.</p></details>
         <details><summary>¿Cuánto cuesta alquilar la sala?</summary><p><span class="tbd">Pendiente</span> Explicar si la sala va incluida al contratar menú o barra libre.</p></details>
         <details><summary>¿Cómo se confirma la reserva?</summary><p><span class="tbd">Pendiente</span> Señal, forma de pago y política de cancelación.</p></details>
