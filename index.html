@@ -65,7 +65,7 @@ header:not(.solid) .logo small{color:var(--gold)}
 .burger span{display:block;width:24px;height:1.5px;background:currentColor;margin:6px auto;transition:.3s}
 
 /* pages */
-.page{display:none}.page.on{display:block;animation:fade .5s ease}
+.sc-page{display:none}.sc-page.on{display:block;animation:fade .5s ease}
 @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
 /* hero */
@@ -344,7 +344,7 @@ footer .tbd{color:#f3a6c3;border-color:#f3a6c3}
 
 <main>
 <!-- ===================== INICIO ===================== -->
-<div class="page" id="p-inicio">
+<div class="sc-page" id="p-inicio">
   <section class="hero dark">
     <div class="bg" style="background-image:url(https://salacapricho.com/wp-content/uploads/2016/04/IMG_8403.jpg)"></div>
     <div class="wrap">
@@ -471,7 +471,7 @@ footer .tbd{color:#f3a6c3;border-color:#f3a6c3}
 </div>
 
 <!-- ===================== CELEBRACIONES ===================== -->
-<div class="page" id="p-celebraciones">
+<div class="sc-page" id="p-celebraciones">
   <div class="phero"><div class="wrap">
     <p class="eyebrow">Celebraciones</p>
     <h1>Todo lo que necesitas <em>para tu fiesta</em></h1>
@@ -617,7 +617,7 @@ footer .tbd{color:#f3a6c3;border-color:#f3a6c3}
 </div>
 
 <!-- ===================== GALERÍA ===================== -->
-<div class="page" id="p-galeria">
+<div class="sc-page" id="p-galeria">
   <div class="phero"><div class="wrap">
     <p class="eyebrow">Galería</p>
     <h1>Así se vive <em>Capricho</em></h1>
@@ -632,7 +632,7 @@ footer .tbd{color:#f3a6c3;border-color:#f3a6c3}
 </div>
 
 <!-- ===================== CONTACTO ===================== -->
-<div class="page" id="p-contacto">
+<div class="sc-page" id="p-contacto">
   <div class="phero"><div class="wrap">
     <p class="eyebrow">Contacto y presupuesto</p>
     <h1>Cuéntanos <em>tu evento</em></h1>
@@ -797,7 +797,7 @@ function route(){
   const h=location.hash.slice(1)||'inicio';
   const p=pages.includes(h)?h:null;
   if(!p){const el=document.getElementById(h); if(el) el.scrollIntoView(); return;}
-  document.querySelectorAll('.page').forEach(e=>e.classList.toggle('on',e.id==='p-'+p));
+  document.querySelectorAll('.sc-page').forEach(e=>e.classList.toggle('on',e.id==='p-'+p));
   document.querySelectorAll('.menu a[data-p]').forEach(a=>a.classList.toggle('on',a.dataset.p===p));
   curPage=p; setHdr();
   document.getElementById('menu').classList.remove('open');
@@ -821,7 +821,7 @@ let io;
 function observe(){
   io&&io.disconnect();
   io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}}),{threshold:.12});
-  document.querySelectorAll('.page.on .reveal:not(.in)').forEach(el=>io.observe(el));
+  document.querySelectorAll('.sc-page.on .reveal:not(.in)').forEach(el=>io.observe(el));
 }
 
 /* tour */
